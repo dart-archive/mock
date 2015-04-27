@@ -4,17 +4,18 @@
 
 library mock.mock_stepwise_negative_test;
 
-import 'package:unittest/unittest.dart' show test;
+import 'package:unittest/unittest.dart';
 import 'package:mock/mock.dart';
 
-main() {
+void main() {
   test('Mocking: stepwiseValidate', () {
     LogEntryList logList = new LogEntryList('test');
     for (var i = 0; i < 10; i++) {
       LogEntry e = new LogEntry(null, 'foo', [i], Action.IGNORE);
       logList.add(e);
     }
-    int total = 0;
-    logList.stepwiseValidate((log, pos) => 0);
+
+    expect(() => logList.stepwiseValidate((log, pos) => 0),
+        throwsA(new isInstanceOf<TestFailure>()));
   });
 }

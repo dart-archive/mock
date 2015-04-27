@@ -45,7 +45,7 @@ void main() {
   test('Mocking: Basics', () {
     var m = new Mock();
     // intentional no-opp access to m.length
-    var foo = m.length;
+    expect(m.length, isNull);
     m.getLogs(callsTo('get length')).verify(happenedOnce);
 
     m.when(callsTo('foo', 1, 2)).thenReturn('A').thenReturn('B');

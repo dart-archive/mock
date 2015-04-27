@@ -4,15 +4,14 @@
 
 library mock.mock_regexp_negative_test;
 
-import 'package:unittest/unittest.dart' show test;
+import 'package:unittest/unittest.dart';
 import 'package:matcher/matcher.dart';
 import 'package:mock/mock.dart';
 
 void main() {
   test('Mocking: RegExp CallMatcher bad', () {
     var m = new Mock();
-    m.when(callsTo(matches('^[A-Z]'))).
-           alwaysThrow('Method names must start with lower case.');
-    m.Test();
+    m.when(callsTo(matches('^[A-Z]'))).alwaysThrow('String error');
+    expect(() => m.Test(), throwsA('String error'));
   });
 }
