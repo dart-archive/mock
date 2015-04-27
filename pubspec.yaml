@@ -1,8 +1,8 @@
 name: mock
-version: 0.11.0+2
+version: 0.11.1-dev
 author: Dart Team <misc@dartlang.org>
 description: A library for mocking classes
-homepage: https://pub.dartlang.org/packages/mock
+homepage: https://github.com/dart-lang/mock
 environment:
   sdk: '>=1.0.0 <2.0.0'
 dependencies:
