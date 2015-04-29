@@ -4,7 +4,7 @@
 
 library mock.mock_stepwise_negative_test;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:mock/mock.dart';
 
 void main() {
@@ -16,6 +16,6 @@ void main() {
     }
 
     expect(() => logList.stepwiseValidate((log, pos) => 0),
-        throwsA(new isInstanceOf<TestFailure>()));
+        throwsA(new isInstanceOf<LogEntryListFailure>()));
   });
 }

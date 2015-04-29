@@ -4,7 +4,7 @@
 
 library mock.mock_regexp_negative_test;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:matcher/matcher.dart';
 import 'package:mock/mock.dart';
 

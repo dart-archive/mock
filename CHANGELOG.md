@@ -1,6 +1,10 @@
+## 0.12.0-beta.0
+
+* Moved to support latest `matcher` and `test` packages.
+
 ## 0.11.0+3
 
-* Use the identity of of `CallMatcher` to match `Behavior` instances, instead 
+* Use the identity of of `CallMatcher` to match `Behavior` instances, instead
   of `toString`.
 
 ## 0.11.0+2

@@ -4,7 +4,7 @@
 
 library mock.test;
 
-import 'package:unittest/unittest.dart' show test, group, skip_test;
+import 'package:test/test.dart';
 import 'package:matcher/matcher.dart';
 import 'package:mock/mock.dart';
 
@@ -655,7 +655,7 @@ void main() {
   });
 
   // TODO(kevmoo): figure out why this test is failing
-  skip_test("Mocking: instances", () {
+  test("Mocking: instances", () {
     var alice = new Object();
     var bob = new Object();
     var m = new Mock();
@@ -665,7 +665,7 @@ void main() {
     expect(m.foo(bob), false);
     expect(m.foo(alice), true);
     expect(m.foo(bob), false);
-  });
+  }, skip: 'Has been broken for a while');
 
   test("Behavior ordering", () {
     // This is distinct from value ordering, i.e.
