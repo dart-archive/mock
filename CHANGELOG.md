@@ -1,3 +1,8 @@
+## 0.11.0+3
+
+* Use the identity of of `CallMatcher` to match `Behavior` instances, instead 
+  of `toString`.
+
 ## 0.11.0+2
 
 * Updated documentation link.
