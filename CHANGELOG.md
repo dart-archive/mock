@@ -1,6 +1,10 @@
-## 0.12.0-beta.0
+## 0.12.0
 
 * Moved to support latest `matcher` and `test` packages.
+
+## 0.11.0+4
+
+* Support latest `0.11.x` release of `unittest` which embeds `matcher`.
 
 ## 0.11.0+3
 
@@ -13,7 +17,7 @@
 
 ## 0.11.0+1
 
-* Updated unittest dependency.
+* Updated `unittest` dependency.
 
 ## 0.11.0
 
