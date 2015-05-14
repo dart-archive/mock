@@ -4,8 +4,7 @@
 
 library mock.test;
 
-import 'package:unittest/unittest.dart' show test, group, skip_test;
-import 'package:matcher/matcher.dart';
+import 'package:unittest/unittest.dart';
 import 'package:mock/mock.dart';
 
 class MockList extends Mock implements List {
