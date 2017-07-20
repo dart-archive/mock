@@ -10,7 +10,7 @@ import 'package:mock/mock.dart';
 
 void main() {
   test('Mocking: RegExp CallMatcher bad', () {
-    var m = new Mock();
+    dynamic m = new Mock();
     m.when(callsTo(matches('^[A-Z]'))).alwaysThrow('String error');
     expect(() => m.Test(), throwsA('String error'));
   });

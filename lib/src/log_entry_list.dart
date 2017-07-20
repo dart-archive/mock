@@ -125,7 +125,6 @@ class LogEntryList {
         }
         throw new LogEntryListFailure(
             "Stepwise validation failed at $filter position $i$reason");
-        return false;
       } else {
         i += n;
       }
