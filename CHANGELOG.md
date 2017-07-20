@@ -1,3 +1,7 @@
+## 0.12.0+1
+
+* Fix tests to type check after strong mode `@proxy` fix.
+
 ## 0.12.0
 
 * Moved to support latest `matcher` and `test` packages.

@@ -8,9 +8,7 @@ import 'package:test/test.dart';
 import 'package:matcher/matcher.dart';
 import 'package:mock/mock.dart';
 
-class MockList extends Mock implements List {
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+class MockList extends Mock implements List {}
 
 class Foo {
   sum(a, b, c) => a + b + c;
@@ -22,8 +20,6 @@ class FooSpy extends Mock implements Foo {
   FooSpy() {
     this.when(callsTo('sum')).alwaysCall(real.sum);
   }
-
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
 LogEntry makeTestLogEntry(String methodName, List args, int time,
@@ -43,7 +39,7 @@ LogEntryList makeTestLog() {
 
 void main() {
   test('Mocking: Basics', () {
-    var m = new Mock();
+    dynamic m = new Mock();
     // intentional no-opp access to m.length
     expect(m.length, isNull);
     m.getLogs(callsTo('get length')).verify(happenedOnce);
@@ -68,7 +64,7 @@ void main() {
   });
 
   test('Mocking: getters/setters', () {
-    var m = new Mock();
+    dynamic m = new Mock();
     var x = 0;
     m.when(callsTo('get foo')).alwaysReturn(3);
     m.when(callsTo('set foo')).alwaysCall((v) { x = v; });
@@ -113,7 +109,7 @@ void main() {
   });
 
   test('Mocking: Excess Calls', () {
-    var m = new Mock();
+    dynamic m = new Mock();
     m.when(callsTo('foo')).alwaysReturn(null);
     expect(() { m.foo(); }, returnsNormally);
     expect(() { m.foo(); }, returnsNormally);
@@ -130,7 +126,7 @@ void main() {
   });
 
   test('Mocking: No action', () {
-    var m = new Mock();
+    dynamic m = new Mock();
     m.when(callsTo('foo')).thenReturn(null);
     expect(() => m.foo(), returnsNormally);
     expect(() => m.foo(), throwsA((e) =>
@@ -147,7 +143,7 @@ void main() {
   });
 
   test('Mocking: No behavior', () {
-    var m = new Mock.custom(throwIfNoBehavior:true);
+    dynamic m = new Mock.custom(throwIfNoBehavior:true);
     m.when(callsTo('foo')).thenReturn(null);
     expect(() => m.foo(), returnsNormally);
     expect(() => m.bar(), throwsA((e) => e.toString() ==
@@ -156,8 +152,8 @@ void main() {
 
   test('Mocking: Shared logList', () {
     var logList = new LogEntryList();
-    var m1 = new Mock.custom(name: 'm1', log: logList);
-    var m2 = new Mock.custom(name: 'm2', log: logList);
+    dynamic m1 = new Mock.custom(name: 'm1', log: logList);
+    dynamic m2 = new Mock.custom(name: 'm2', log: logList);
     m1.foo();
     m2.foo();
     m1.bar();
@@ -171,7 +167,7 @@ void main() {
   });
 
   test('Mocking: Null CallMatcher', () {
-    var m = new Mock();
+    dynamic m = new Mock();
     m.when(callsTo(null, 1)).alwaysReturn(2);
     m.when(callsTo(null, 2)).alwaysReturn(4);
     expect(m.foo(1), 2);
@@ -187,14 +183,14 @@ void main() {
   });
 
   test('Mocking: RegExp CallMatcher good', () {
-    var m = new Mock();
+    dynamic m = new Mock();
     m.when(callsTo(matches('^[A-Z]'))).
            alwaysThrow('Method names must start with lower case.');
     m.test();
   });
 
   test('Mocking: No logging', () {
-    var m = new Mock.custom(enableLogging: false);
+    dynamic m = new Mock.custom(enableLogging: false);
     m.Test();
     expect(() => m.getLogs(callsTo('Test')), throwsA((e) => e.toString() ==
         "Exception: Can't retrieve logs when logging was never enabled."));
@@ -624,7 +620,7 @@ void main() {
   });
 
   test('Mocking: clearLogs', () {
-    var m = new Mock();
+    dynamic m = new Mock();
     m.foo();
     m.foo();
     m.foo();
@@ -632,9 +628,9 @@ void main() {
     m.clearLogs();
     expect(m.log.logs, hasLength(0));
     LogEntryList log = new LogEntryList();
-    var m1 = new Mock.custom(name: 'm1', log: log);
-    var m2 = new Mock.custom(name: 'm2', log: log);
-    var m3 = new Mock.custom(name: 'm3', log: log);
+    dynamic m1 = new Mock.custom(name: 'm1', log: log);
+    dynamic m2 = new Mock.custom(name: 'm2', log: log);
+    dynamic m3 = new Mock.custom(name: 'm3', log: log);
     for (var i = 0; i < 3; i++) {
       m1.foo();
       m2.bar();
@@ -658,14 +654,14 @@ void main() {
   test("Mocking: instances", () {
     var alice = new Object();
     var bob = new Object();
-    var m = new Mock();
+    dynamic m = new Mock();
     m.when(callsTo("foo", alice)).alwaysReturn(true);
     m.when(callsTo("foo", bob)).alwaysReturn(false);
     expect(m.foo(alice), true);
     expect(m.foo(bob), false);
     expect(m.foo(alice), true);
     expect(m.foo(bob), false);
-  }, skip: 'Has been broken for a while');
+  });
 
   test("Behavior ordering", () {
     // This is distinct from value ordering, i.e.
@@ -677,7 +673,7 @@ void main() {
     // matches 3 different behaviors, and test that
     // the behaviors are applied in the order they are
     // defined.
-    var m = new Mock();
+    dynamic m = new Mock();
     m.when(callsTo("foo")).thenReturn("A");
     m.when(callsTo("foo", "bar")).thenReturn("B");
     m.when(callsTo("foo", "bar", "mock")).alwaysReturn("C");
@@ -726,7 +722,7 @@ void main() {
 
   test('Spys', () {
     var real = new Foo();
-    var spy = new Mock.spy(real);
+    dynamic spy = new Mock.spy(real);
     var sum = spy.sum(1, 2, 3);
     expect(sum, 6);
     expect(() => spy.total(1, 2, 3), throwsNoSuchMethodError);
